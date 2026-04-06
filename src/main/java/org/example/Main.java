@@ -1,17 +1,28 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import org.example.config.DBConfig;
+import org.example.model.Monitor;
+import org.example.service.MonitorService;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.time.LocalDateTime;
+
+/**
+ * Класс запуска приложения
+ */
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.println("Hello and welcome!");
-
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        Monitor monitor1 = new Monitor("YouTube", "https://youtube.com", "POST", 1500, 200, true, 60, LocalDateTime.now(), null);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DBConfig.class);
+        MonitorService monitorService = context.getBean(MonitorService.class);
+        System.out.println("Получить все мониторы:" + monitorService.getAllMonitors());
+        monitorService.saveMonitor(monitor1);
+        System.out.println("Получить все мониторы:" + monitorService.getAllMonitors());
+        System.out.println("Получить монитор по name:" + monitorService.getMonitorByName(monitor1.getName()));
+        monitor1.setMethod("GET");
+        monitorService.updateMonitor(monitor1);
+        System.out.println("Получить монитор по ID:" + monitorService.getMonitor(monitor1.getId()));
+        monitorService.deleteMonitor(monitor1.getId());
+        System.out.println("Получить все мониторы:" + monitorService.getAllMonitors());
     }
 }
