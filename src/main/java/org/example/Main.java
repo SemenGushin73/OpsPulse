@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.config.DBConfig;
+import org.example.config.MVCConfig;
 import org.example.model.Monitor;
 import org.example.service.MonitorService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -18,11 +19,11 @@ public class Main {
         System.out.println("Получить все мониторы:" + monitorService.getAllMonitors());
         monitorService.saveMonitor(monitor1);
         System.out.println("Получить все мониторы:" + monitorService.getAllMonitors());
-        System.out.println("Получить монитор по name:" + monitorService.getMonitorByName(monitor1.getName()));
-        monitor1.setMethod("GET");
-        monitorService.updateMonitor(monitor1);
-        System.out.println("Получить монитор по ID:" + monitorService.getMonitor(monitor1.getId()));
-        monitorService.deleteMonitor(monitor1.getId());
-        System.out.println("Получить все мониторы:" + monitorService.getAllMonitors());
+//        System.out.println("Получить монитор по name:" + monitorService.getMonitorByName(monitor1.getName()));
+//        monitor1.setMethod("GET");
+//        monitorService.updateMonitor(monitor1);
+//        System.out.println("Получить монитор по ID:" + monitorService.getMonitor(monitor1.getId()));
+//        monitorService.deleteMonitor(monitor1.getId());
+//        System.out.println("Получить все мониторы:" + monitorService.getAllMonitors());
     }
 }
